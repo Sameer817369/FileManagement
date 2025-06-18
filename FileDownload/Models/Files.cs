@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DownloadFileFlow.Model
+namespace FileDownload.Models
 {
     public class Files
     {
@@ -16,5 +16,7 @@ namespace DownloadFileFlow.Model
         public string Description { get; set; }
         [Required]
         public string FileUrl { get; set; }
+        [Required]
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
     }
 }
