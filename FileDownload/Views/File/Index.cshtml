@@ -1,0 +1,57 @@
+﻿@model List<Files>
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-dark">Your Files</h2>
+        <a asp-controller="File" asp-action="Create" class="btn btn-primary btn-lg">
+            <i class="bi bi-file-earmark-plus me-2"></i> Create File
+        </a>
+    </div>
+
+    <div class="row justify-content-center">
+        @if (Model != null && Model.Any())
+        {
+            <div class="row g-4">
+                @foreach (var file in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-header bg-primary text-white text-center fw-bold">
+                                📄 File Details
+                            </div>
+                            <div class="card-body bg-light">
+                                <h5 class="fw-bold mb-2">@file.Title</h5>
+                                <p class="text-muted mb-3">@file.Description</p>
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-primary fw-semibold">
+                                        Created by: @file.FileCreator?.UserName
+                                    </span>
+
+                                    <!-- Download Button (Fixed Route) -->
+                                    <a asp-controller="File" asp-action="DownloadFile" asp-route-fileId="@file.Id"
+                                       class="btn btn-success btn-sm d-flex align-items-center">
+                                        <i class="bi bi-download me-2"></i> Download
+                                    </a>
+
+                                    <!-- Delete Button -->
+                                    <form asp-controller="File" asp-action="RemoveFile" asp-route-fileId="@file.Id" method="post">
+                                        <button type="submit" class="btn btn-danger btn-sm d-flex align-items-center">
+                                            <i class="bi bi-trash me-2"></i> Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger p-3 text-center w-50">
+                <h2>No files to display</h2>
+            </div>
+        }
+    </div>
+</div>

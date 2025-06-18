@@ -1,0 +1,44 @@
+﻿@model CreateFIleDto
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm" style="border-radius: 10px;">
+                <div class="card-header bg-gradient bg-primary text-white text-center" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                    <h4 class="mb-0">📂 Create a New File</h4>
+                </div>
+                <div class="card-body bg-light">
+                    <form asp-controller="File" asp-action="Create" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label asp-for="Title" class="form-label">File Title</label>
+                            <input asp-for="Title" class="form-control shadow-sm" placeholder="Enter file title" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label">Description</label>
+                            <textarea asp-for="Description" class="form-control shadow-sm" rows="4" placeholder="Enter file description"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Image" class="form-label">Upload Image</label>
+                            <input asp-for="Image" type="file" class="form-control shadow-sm" />
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success fw-bold" style="letter-spacing: 1px;">
+                                <i class="bi bi-file-earmark-plus"></i> Create File
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
